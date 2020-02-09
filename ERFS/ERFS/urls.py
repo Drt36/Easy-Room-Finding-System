@@ -24,7 +24,7 @@ urlpatterns = [
      path('',include('account.urls')),
     path('',include('restapi.urls')),
     path('admin/', admin.site.urls),
-    
+    path('',include('asset.urls')),
 ]
 
 
