@@ -17,7 +17,9 @@
                <div class="col s12 m7">
                <div class="card">
                   <div class="card-image"style="padding: 10px;">
-                     <img src="{{book.asset.asset_Image.url}}" height="400" width="400">
+                     {% if asset.asset_Image %}
+                      <img src="{{book.asset.asset_Image.url}}" height="400" width="400">
+                      {%endif%}
                      <span class="card-title">{{book.asset_Title}}</span>
                   </div>
                   <div class="card-content" style="padding: 10px;" >

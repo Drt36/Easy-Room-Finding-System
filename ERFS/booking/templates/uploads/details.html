@@ -15,7 +15,9 @@
                 <div class="col s12 m7">
                 <div class="card">
                 <div class="card-image" style="padding: 10px;"  >
-                    <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                    {% if asset.asset_Image %}
+                        <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                    {% endif %}
                 </div>
                 <div class="card-content" style="padding: 10px;" >
                     <p><b>{{asset.asset_Title}}</b></p>
@@ -50,8 +52,9 @@
                     {% else %}
                             <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-success">Booked</button>
                     {% endif %}
-
-                    <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
+                    {% if asset.asset_Image %}
+                        <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
+                    {%endif%}
 
                 </div>
                 </div>
