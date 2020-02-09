@@ -1,38 +1,74 @@
 
     
-    {% extends "index.html" %}
-    {% block content %} 
-    
-  {%if asset%}
-<div class="row">
-  {%for a in asset%}
-  <div class="col s12 m3">
-    <div class="card">
-      <!-- <div class="card-image">
-        <img src="{{f.photo.url}}" />
-        <span class="card-title red">{{f.name}}</span>
-      </div> -->
-      <div class="card-content">
-        <p>
-          Property Title : {{a.asset_Title}} <br />
-          Property Type : {{a.asset_Type}} <br />
-          Property Price : {{a.asset_Price}} <br />
-          Property Location : {{a.asset_Location}} <br />
-          Property Purpose : {{a.asset_purpose}} <br />
-          Owner's Name: {{a.first_name}}  
-          
-        </p>
-      </div>
-      <div class="card-action">
-        <a href="#">View More</a>
-      </div>
+  {% extends "index.html" %}
+  {% block content %} 
+  
+  {% if asset %}
+
+     {% for asset in asset %}
+
+
+            <div class="row" style="padding: 10px;">
+                <div class="col s12 m7">
+                <div class="card">
+                <div class="card-image" style="padding: 10px;"  >
+                    <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                </div>
+                <div class="card-content" style="padding: 10px;" >
+                    <p><b>{{asset.asset_Title}}</b></p>
+                    <p><b>Seller:</b>{{asset.user.first_name}}  {{asset.user.last_name}}</p>
+                    <p><b>Asset ID:</b>{{asset.id}}</p>
+                    <p><b>Type:</b>{{asset.asset_Type}}</p>
+                    <p><b>Price:</b>{{asset.asset_Price}}</p>
+                    <p><b>Location:</b>{{asset.asset_Location}}</p>
+                    <p><b>Purpose:</b>{{asset.asset_purpose}}</p>
+                    <p><b>Email:</b>{{asset.user.email}}</p>
+                   
+                </div>
+                <br>
+            
+                <div class="card-action">
+                  
+                    <form method="POST" action="{% url 'booking:delete_asset' asset.pk %}">
+                        {% csrf_token %}
+                        <button style="position:absolute;left:10px; bottom:5px;" type= "submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    
+                    <form method="GET" action="{% url 'booking:update_asset' asset.pk %}">
+                        {% csrf_token %}
+                        <button style="position:absolute;left:100px; bottom:5px;" type="submit" class="btn btn-warning">Update</button>
+                    </form>
+                    
+                    {% if asset.is_available %}
+                        <form method="POST" action="{% url 'booking:book_asset' asset.pk %}">
+                            {% csrf_token %}
+                            <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-primary">Book</button>
+                        </form>
+                    {% else %}
+                            <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-success">Booked</button>
+                    {% endif %}
+
+                    <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
+
+                </div>
+                </div>
+                </div>
+            </div>
+                
+            {% endfor %}
+        
+    {% else %}
+
+    <div class="container">
+        <div class="row">
+            <div class="card-title">
+                <h1>No results</h1>
+            </div>
+        </div>
     </div>
-  </div>
-  {%endfor%}
-</div>
-{%else%}
-<h1 class="card-body">NO results !</h1>
-{%endif%}
+
+    {% endif %}
+  
  
   {%endblock%}
       
