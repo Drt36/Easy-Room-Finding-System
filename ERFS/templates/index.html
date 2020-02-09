@@ -46,12 +46,14 @@
       </div>
     </li>
   </ul>
-  <form  style="position: absolute; right:10px;" class="form-inline" action="/action_page.php">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+  <form method="get" style="position: absolute; right:10px;" class="form-inline"   action="{%url 'asset:result'%}">
+    <input class="form-control mr-sm-2" type="text" id="id_q" placeholder="Search.." name="q">
     <button class="btn btn-success" type="submit">Search</button>
   </form>
 </nav>
-
+<script type="text/javascript">
+  document.getElementById("id_q").value = "{{query}}";
+</script>
 </body>
 
 </html>  
