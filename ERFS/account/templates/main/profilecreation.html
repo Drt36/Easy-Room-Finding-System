@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<form action="{% url 'account:uploadprofile' %}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+{% if error %}
+    <h5 style="color: red;">{{error}}</h5>
+{% endif %}
+
+{{formp.as_p}}
+
+<button type="submit" class="btn btn-success">Upload</button>
+
+</form>
+{% endblock %}

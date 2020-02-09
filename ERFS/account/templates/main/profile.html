@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h3 style="text-align: center;">User Profile</h3>
+<div style="background-color: wheat; height: 100%;">
+    <div style="position: relative; left:810px;">
+            <img style="border-radius:50%; margin-top: 20px;" src="{{userp.picture.url}}" height="300" width="300"><br>
+            <br>
+            <P> <b> Username: {{userp.user.username}} </b></P><br>
+            <br>
+            <P> <b>Name:{{userp.user.first_name}}    {{userp.user.last_name}}</b></P><br>
+             <br>
+            <P> <b>Email:{{userp.user.email}}</b></P><br>
+            <br>
+            <p> <b>Bio:{{userp.bio}}</b></p>
+    </div>
+</div>      
+{% endblock %}

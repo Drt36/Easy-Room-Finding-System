@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+<body>
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 style="text-align: center; margin-top:15px;">User Registration</h2>
+        {% if error %}
+        <h5 style="color: red; text-align: center;">{{error}}</h5>
+        {% endif %}
+       <table style="position: relative; left:790px;">{{formr.as_table}}</table>
+
+        <p style="text-align: center;"> <a href="{% url 'account:userregister' %}">Click here</a> to Register again.</p>
+        
+
+        <button style="position: relative; left:920px;" type="submit" class="btn btn-success">Register</button>
+    </form>
+</body>
+{% endblock %}
