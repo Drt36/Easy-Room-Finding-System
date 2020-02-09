@@ -1,0 +1,40 @@
+
+    
+    {% extends "index.html" %}
+    {% block content %} 
+    
+  {%if asset%}
+<div class="row">
+  {%for a in asset%}
+  <div class="col s12 m3">
+    <div class="card">
+      <!-- <div class="card-image">
+        <img src="{{f.photo.url}}" />
+        <span class="card-title red">{{f.name}}</span>
+      </div> -->
+      <div class="card-content">
+        <p>
+          Property Title : {{a.asset_Title}} <br />
+          Property Type : {{a.asset_Type}} <br />
+          Property Price : {{a.asset_Price}} <br />
+          Property Location : {{a.asset_Location}} <br />
+          Property Purpose : {{a.asset_purpose}} <br />
+          Owner's Name: {{a.first_name}}  
+          
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">View More</a>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+{%else%}
+<h1 class="card-body">NO results !</h1>
+{%endif%}
+ 
+  {%endblock%}
+      
+</body>
+</html>
