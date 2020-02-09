@@ -1,0 +1,69 @@
+
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<div>
+{% if user.is_authenticated %}
+<h3 style="margin-left:10px;">Welcome {{request.user.username}} !!!</h3>
+{% endif %}
+<h2 style="position:relative; left:685px; ">Now You can buy and sell your property</h2>
+</div>
+
+<style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width:900 px;
+      height: 650px;
+      position: relative;
+      left:455px;
+      right:50px;
+  }
+</style>
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+  
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'image/3.jpg' %}" >
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'image/2.jpg' %}" >
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'image/1.jpg' %}" >
+      </div>
+    </div>
+  
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev"  href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next"  href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  
+  </div>
+
+
+ {% if user.is_authenticated %}
+    {% if error %}
+      <h5 style="color: red; text-align: center;">{{error}}</h5>
+    {% endif %}
+    <div>
+
+       <a style="margin-left:850px; margin-top: 20px;" href="{% url 'account:uploadprofile' %}" class="btn btn-info">Set Profile</a> 
+     
+       <a style="margin-left:10px; margin-top: 20px;" href="{% url 'account:viewprofile' %}" class="btn btn-info" >View Profile</a>
+       
+
+    </div>
+ {% endif %}
+{% endblock %}

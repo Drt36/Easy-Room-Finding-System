@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 style="text-align: center; margin-top:15px;">User Login</h2>
+    {% if error %}
+    <h5 style="color: red; text-align: center;">{{error}}</h5>
+    {% endif %}
+     
+    <form id="forml" method="post" action="/main/userlogin/">
+      {% csrf_token %}
+      <p style="position: relative; left:700px; margin-top:40px;"> Username: <input type="text" name="username" value="" size="50" /></p>
+      <br>
+      <p style="position: relative; left:700px;">Password: <input type="password" name="password" value="" size="50" /></p>
+      <br />
+
+      <input style="position: relative; left:920px;" type="submit" class="btn btn-success" value="submit" />
+     </form>  
+     
+  {% endblock %}
