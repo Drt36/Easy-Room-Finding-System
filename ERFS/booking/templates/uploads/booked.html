@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% block content %}
+{% if booked %}
+      {% if messages %}
+      {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><h5 style="color:green; text-align: center;">{{ message }}</h5></p>
+      {% endfor %}
+      {% endif %}
+
+        {% for book in booked %}
+
+
+
+
+       
+            <div class="row" style="padding: 10px; position:  relative; ">
+               <div class="col s12 m7">
+               <div class="card">
+                  <div class="card-image"style="padding: 10px;">
+                     <img src="{{book.asset.asset_Image.url}}" height="400" width="400">
+                     <span class="card-title">{{book.asset_Title}}</span>
+                  </div>
+                  <div class="card-content" style="padding: 10px;" >
+                     <p><b>Booking id:</b>{{book.id}}</p>
+                     <p><b>Seller:</b>{{book.asset.user.first_name}}  {{book.asset.user.last_name}}</p>
+                     <p><b>Seller Email:</b>{{book.asset.user.email}}</p>
+                     <p><b>Asset ID:</b>{{book.asset_id}}</p>
+                     <p><b>Date:</b>{{book.booking_Date}}</p>
+                     <p><b>Price:</b>{{book.asset.asset_Price}}</p>
+                     <p><b>Location:</b>{{book.asset.asset_Location}}</p>
+                     <p><b>Purpose:</b>{{book.asset.asset_purpose}}</p>
+
+                  </div>
+                  <div class="card-action">
+                         <form method="POST" action="{% url 'booking:delete_booking' book.pk %}">
+                        {% csrf_token %}
+                        <button style="position:absolute;left:10px; bottom:5px;" type= "submit" class="btn btn-danger">Delete</button>
+                    </form>
+                     
+                  </div>
+               </div>
+               </div>
+            </div>
+          
+
+         
+        {% endfor %}
+   {% else %}
+
+        <p>
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><h5 style="color:red; text-align: center;">{{ message }}</h5></p>
+                  {% endfor %}
+                  {% endif %}
+                    <h1 style="text-align: center;">No results</h1>
+       </p> 
+      
+   {% endif %}
+{% endblock %}
+        
