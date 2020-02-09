@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block content %}
+{% if sold %}
+    {% if messages %}
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><h5 style="color: red; text-align: center;">{{ message }}</h5></p>
+                {% endfor %}
+            {% endif %}
+        {% for s in sold %}
+
+                <div class="row" style="padding: 10px;">
+                    <div class="col s12 m7">
+                    <div class="card">
+                    <div class="card-image" style="padding: 10px;"  >
+                        <img src="{{s.asset_Image.url}}" height="400" width="400">
+                    </div>
+                    <div class="card-content" style="padding: 10px;">
+                        <p><b>{{s.asset_Title}}</b></p>
+                        <p><b>Buyer:</b>{{s.booking.user.first_name}}  {{s.booking.user.last_name}}</p>
+                        <p><b>Asset ID:</b>{{s.id}}</p>
+                        <p><b>Type:</b>{{s.asset_Type}}</p>
+                        <p><b>Price:</b>{{s.asset_Price}}</p>
+                        <p><b>Location:</b>{{s.asset_Location}}</p>
+                        <p><b>Purpose:</b>{{s.asset_purpose}}</p>
+                        <p><b>Buyer Email:</b>{{s.booking.user.email}}</p>
+                    </div>
+                    <br>
+                    <div>
+                        {% if  s.is_available%}
+                            
+                                <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-primary">Available</button>
+                            
+                        {% else %}
+                                <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-success">Booked</button>
+                        {% endif %}
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                    
+                {% endfor %}
+            
+        {% else %}
+
+        <div class="container">
+            <div class="row">
+                <div class="card-title">
+                    <h1>No results</h1>
+                </div>
+            </div>
+        </div>
+
+{% endif %}
+          
+
+{% endblock %}

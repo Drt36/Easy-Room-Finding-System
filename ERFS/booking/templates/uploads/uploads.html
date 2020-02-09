@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block content %}
+<form method = "POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <table style="position: relative; left:790px;">{{form.as_table}}</table>
+
+    <button style="position: relative; left:910px;" type="submit" class="btn btn-success">Upload</button>
+
+</form>
+{% endblock %}
