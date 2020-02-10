@@ -8,20 +8,22 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+#method to upload assets and its details
 @login_required(login_url='account:userlogin')
 def upload(request):
     if request.method == "POST":
         form= UploadForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid(): #checks if every field is filled or not
             asset=form.save(commit=False)
-            asset.user=request.user
-            asset.save()
+            asset.user=request.user #stores logged in user id in the database asset
+            asset.save() 
             messages.warning(request, 'Property Uploaded SuccessFully!!!.')  
         return redirect('booking:display') 
     else:      
         form= UploadForm()
-        return render(request, "uploads/uploads.html", {"form": form})
+        return render(request, "uploads/uploads.html", {"form": form}) #to display form 
 
+#method to update the uploaded assets
 @login_required(login_url='account:userlogin')
 def update_asset(request, id=None):
     instance= get_object_or_404(Asset, id=id)
@@ -38,10 +40,12 @@ def update_asset(request, id=None):
             messages.warning(request, 'You Can Not Update Others Property.')
             return redirect('booking:display')
 
+#method to display uploaded assets and its details
 def display(request):
     asset= Asset.objects.all()
     return render(request, "uploads/details.html",{"assets": asset})
 
+#method to delete uploaded assets and its details
 @login_required(login_url='account:userlogin')
 def delete_asset(request, pk= None):
         asset= Asset.objects.get(pk=pk)
@@ -53,8 +57,7 @@ def delete_asset(request, pk= None):
             messages.warning(request, 'You Can Not Delete Others Property.')
             return redirect('booking:display')
     
-        
-
+#method to book assets        
 @login_required(login_url='account:userlogin')
 def book_asset(request,pk=None):
     asset = get_object_or_404(Asset, pk=pk)
@@ -77,13 +80,13 @@ def book_asset(request,pk=None):
             asset.is_available = True
             asset.save()
         
-
+#method to display booked assets 
 @login_required(login_url='account:userlogin')
 def bookedasset(request):
     booked= Booking.objects.filter(user_id=request.user.id)
     return render(request, 'uploads/booked.html', {"booked":booked})
 
-
+#method to display the assets uploaded by the user in user profile
 @login_required(login_url='account:userlogin')
 def soldasset(request):
         sold=Asset.objects.filter(user_id=request.user.id)
