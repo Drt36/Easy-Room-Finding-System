@@ -8,17 +8,12 @@
       {% endif %}
 
         {% for book in booked %}
-
-
-
-
-       
             <div class="row" style="padding: 10px; position:  relative; ">
                <div class="col s12 m7">
                <div class="card">
                   <div class="card-image"style="padding: 10px;">
-                     {% if asset.asset_Image %}
-                      <img src="{{book.asset.asset_Image.url}}" height="400" width="400">
+                     {% if book.asset.asset_Image %}
+                        <img src="{{book.asset.asset_Image.url}}" height="400" width="400">
                       {%endif%}
                      <span class="card-title">{{book.asset_Title}}</span>
                   </div>

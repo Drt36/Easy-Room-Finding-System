@@ -12,7 +12,7 @@
                     <div class="col s12 m7">
                     <div class="card">
                     <div class="card-image" style="padding: 10px;"  >
-                        {% if asset.asset_Image %}
+                        {% if s.asset_Image %}
                          <img src="{{s.asset_Image.url}}" height="400" width="400">
                          {%endif%}
                     </div>
@@ -44,11 +44,13 @@
             
         {% else %}
 
-        <div class="container">
-            <div class="row">
-                <div class="card-title">
-                    <h1>No results</h1>
-                </div>
+        <div class="row" style="padding: 10px; position: relative;">
+            <div class="col s12 m7">
+            <div class="card">
+            <div class="card-content">
+                <h1 style="text-align: center;">NO Result!!!</h1>
+            </div>
+            </div>
             </div>
         </div>
 

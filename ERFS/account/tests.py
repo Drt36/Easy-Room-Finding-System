@@ -6,7 +6,7 @@ from booking.models import Asset,Booking
  
 class DataTest(TestCase):
     def setUp(self):
-
+        #Providing Dataset
         self.asset = Asset.objects.create(is_available=True,asset_Title="Room Available",  asset_Type="Room",asset_Price=15000,asset_purpose="Rent",asset_Location="Naxal",asset_Image="")
 
         self.user=User.objects.create(username="drt",first_name="Dharma Raj",last_name="Thanait",email="drt36@gmail.com",password="123");
@@ -15,7 +15,7 @@ class DataTest(TestCase):
 
         self.book=Booking.objects.create(asset_id=self.asset.id,user_id=self.user.id,booking_Date="",booking_Status=True)
 
-
+    # All Test case 
     def testAsset(self):
         a=Asset.objects.get(asset_Title="Room Available")
         self.assertEqual(a.asset_Title,"Room Available")

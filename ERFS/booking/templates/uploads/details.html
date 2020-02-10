@@ -1,3 +1,4 @@
+
 {% extends 'index.html' %}
 {% block content %}
 
@@ -11,7 +12,7 @@
             {% for asset in assets %}
 
 
-            <div class="row" style="padding: 10px;">
+            <div class="row" style="padding: 10px;" >
                 <div class="col s12 m7">
                 <div class="card">
                 <div class="card-image" style="padding: 10px;"  >
@@ -65,24 +66,25 @@
         
     {% else %}
 
-    <div class="container">
-        <div class="row">
-            <div class="card-title">
-                <h1>No results</h1>
-            </div>
+    <div class="row" style="padding: 10px; position: relative;">
+        <div class="col s12 m7">
+        <div class="card">
+        <div class="card-content">
+            <h1 style="text-align: center;">NO Result!!!</h1>
+        </div>
+        </div>
         </div>
     </div>
 
     {% endif %}
 
 
-    <div class="row" style="padding: 10px; position: relative;">
+    <div class="row" style="padding: 10px; ">
         <div class="col s12 m7">
         <div class="card">
         <div class="card-content">
             <h3 style="text-align: center;">Click to upload your assets.</h3>
             <br>
-
             <a href="{% url 'booking:files' %}" class="btn btn-info" style="position:relative; left:885px; bottom: 10px;">Upload</a>
         </div>
         </div>
