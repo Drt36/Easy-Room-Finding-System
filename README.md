@@ -1,6 +1,6 @@
 # Extreme_ADC4
 
-Group nsme: Extreme
+Group Name: Extreme
 Project Name: ERFS(Easy Room Finding System)
 Group Members: 
 -Dharma Raj Thanait(NP03A180228)
