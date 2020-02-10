@@ -1,6 +1,6 @@
 # Extreme_ADC4
 
-Group nsme: Extreme
+Group Name: Extreme
 <br>
 Project Name: ERFS(Easy Room Finding System)
 <br>
