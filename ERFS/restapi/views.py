@@ -39,6 +39,7 @@ def api_dataadd(request):
        return JsonResponse({"asset_Title":a.asset_Title, "asset_Type":a.asset_Type,
         "asset_Price":a.asset_Price,"asset_purpose":a.asset_purpose,"asset_Location":a.asset_Location})
 
+#to update data of the model asset using api
 @csrf_exempt
 def api_dataupdate(request, pk=None):
    asset =Asset.objects.get(pk=pk)
@@ -57,6 +58,7 @@ def api_dataupdate(request, pk=None):
       return JsonResponse({"asset_Title":asset.asset_Title, "asset_Type":asset.asset_Type,
         "asset_Price":asset.asset_Price,"asset_purpose":asset.asset_purpose,"asset_Location":asset.asset_Location})
 
+#to delete data of the model asset using api
 @csrf_exempt
 def api_datadelete(request, pk=None):
    asset = Asset.objects.get(pk=pk)
@@ -68,7 +70,7 @@ def api_datadelete(request, pk=None):
        return JsonResponse({"asset_Title":asset.asset_Title, "asset_Type":asset.asset_Type,
         "asset_Price":asset.asset_Price,"asset_purpose":asset.asset_purpose,"asset_Location":asset.asset_Location})
 
-
+#for pagination using api 
 def api_assetpagination(request, PAGENO):
    SIZE = 1
    skip = SIZE * (PAGENO-1)
