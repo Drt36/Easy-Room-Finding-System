@@ -13,6 +13,8 @@ class DataTest(TestCase):
 
         self.userprofile = UserProfile.objects.create(user_id=self.user.id, picture="", bio="I am Drt")
 
+        self.book=Booking.objects.create(asset_id=self.asset.id,user_id=self.user.id,booking_Date="",booking_Status=True)
+
 
     def testAsset(self):
         a=Asset.objects.get(asset_Title="Room Available")
@@ -34,3 +36,7 @@ class DataTest(TestCase):
     def testavailable(self):
         f=Asset.objects.get(is_available=True)
         self.assertEqual(f.is_available,True)
+
+    def testbook(self):
+        bk=Booking.objects.get(booking_Status=True)
+        self.assertEqual(bk.booking_Status,True)
