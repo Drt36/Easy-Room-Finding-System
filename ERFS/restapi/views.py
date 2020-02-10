@@ -72,7 +72,7 @@ def api_datadelete(request, pk=None):
 
 #for pagination using api 
 def api_assetpagination(request, PAGENO):
-   SIZE = 1
+   SIZE = 2
    skip = SIZE * (PAGENO-1)
    asset = Asset.objects.all()[skip:PAGENO*SIZE]
    dict = {
