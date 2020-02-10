@@ -13,7 +13,9 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
+from .decorators import user_only, admin_only
 # Create your views here.
+
 
 def index(request):
     return render(request,template_name="index.html")
@@ -60,11 +62,13 @@ def userlogout(request):
     return render(request,"main/userlogout.html",{"userlogout":userlogout})
 
 #Method to display Homepage 
+@user_only
 def sucess(request):
     return render(request,"main/sucess.html",{"sucess":sucess})
     
 # Method to upload Profile
 @login_required(login_url='account:userlogin')
+@user_only
 def uploadprofile(request):
     try:
         if request.method== "POST":
@@ -83,6 +87,7 @@ def uploadprofile(request):
 
 # Method to display User Profile
 @login_required(login_url='account:userlogin')
+@user_only
 def viewprofile(request):
     try:
         userp=UserProfile.objects.get(user=request.user.id)
@@ -91,6 +96,9 @@ def viewprofile(request):
     except:
         return render(request, "main/sucess.html",{'error':"Profile is not Created"})
 
+@admin_only
+def adminpanel(request):
+    return render(request,"main/admin.html",{"adminpanel":adminpanel})
 
 
     
