@@ -1,3 +1,4 @@
+
 {% extends 'index.html' %}
 {% block content %}
 
@@ -11,11 +12,13 @@
             {% for asset in assets %}
 
 
-            <div class="row" style="padding: 10px;">
+            <div class="row" style="padding: 10px;" >
                 <div class="col s12 m7">
                 <div class="card">
                 <div class="card-image" style="padding: 10px;"  >
-                    <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                    {% if asset.asset_Image %}
+                        <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                    {% endif %}
                 </div>
                 <div class="card-content" style="padding: 10px;" >
                     <p><b>{{asset.asset_Title}}</b></p>
@@ -50,8 +53,9 @@
                     {% else %}
                             <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-success">Booked</button>
                     {% endif %}
-
-                    <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
+                    {% if asset.asset_Image %}
+                        <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
+                    {%endif%}
 
                 </div>
                 </div>
@@ -62,24 +66,25 @@
         
     {% else %}
 
-    <div class="container">
-        <div class="row">
-            <div class="card-title">
-                <h1>No results</h1>
-            </div>
+    <div class="row" style="padding: 10px; position: relative;">
+        <div class="col s12 m7">
+        <div class="card">
+        <div class="card-content">
+            <h1 style="text-align: center;">NO Result!!!</h1>
+        </div>
+        </div>
         </div>
     </div>
 
     {% endif %}
 
 
-    <div class="row" style="padding: 10px; position: relative;">
+    <div class="row" style="padding: 10px; ">
         <div class="col s12 m7">
         <div class="card">
         <div class="card-content">
             <h3 style="text-align: center;">Click to upload your assets.</h3>
             <br>
-
             <a href="{% url 'booking:files' %}" class="btn btn-info" style="position:relative; left:885px; bottom: 10px;">Upload</a>
         </div>
         </div>

@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,template_name="index.html")
-
+# Method To register User
 def userregister(request):
     if request.method == 'POST':
         formr = RegistrationForm(data=request.POST)
@@ -38,7 +38,7 @@ def userregister(request):
         formr = RegistrationForm()
         return render(request, "main/userregister.html", {"formr":formr})
 
-
+# Method to login User
 def userlogin(request):
     if request.method=='POST':
         usernam = request.POST['username']
@@ -52,17 +52,19 @@ def userlogin(request):
             return render(request, "main/userlogin.html",{'error':"Worng Username and Password"})
     else:
         return render(request, "main/userlogin.html")
-@login_required
+
+# User Logout  Method
+@login_required(login_url='account:userlogin')
 def userlogout(request):
     logout(request)
     return render(request,"main/userlogout.html",{"userlogout":userlogout})
 
-            
+#Method to display Homepage 
 def sucess(request):
     return render(request,"main/sucess.html",{"sucess":sucess})
     
-
-@login_required
+# Method to upload Profile
+@login_required(login_url='account:userlogin')
 def uploadprofile(request):
     try:
         if request.method== "POST":
@@ -79,8 +81,8 @@ def uploadprofile(request):
     except:
         return render(request, "main/sucess.html",{'error':"Profile is already created"})
 
-
-@login_required
+# Method to display User Profile
+@login_required(login_url='account:userlogin')
 def viewprofile(request):
     try:
         userp=UserProfile.objects.get(user=request.user.id)

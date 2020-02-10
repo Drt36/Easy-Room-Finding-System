@@ -2,17 +2,27 @@
 
 {% block content %}
 <h3 style="text-align: center;">User Profile</h3>
-<div style="background-color: wheat; height: 100%;">
-    <div style="position: relative; left:810px;">
-            <img style="border-radius:50%; margin-top: 20px;" src="{{userp.picture.url}}" height="300" width="300"><br>
-            <br>
-            <P> <b> Username: {{userp.user.username}} </b></P><br>
-            <br>
-            <P> <b>Name:{{userp.user.first_name}}    {{userp.user.last_name}}</b></P><br>
-             <br>
-            <P> <b>Email:{{userp.user.email}}</b></P><br>
-            <br>
-            <p> <b>Bio:{{userp.bio}}</b></p>
-    </div>
+<div>
+    <!-- Display User Profile -->
+    <div class="row" style="padding: 10px; position:  relative; ">
+        <div class="col s12 m7">
+        <div style="position:absolute; left: 750px; " class="card">
+           <div class="card-image"style="padding: 10px;">
+    
+               <img style="border-radius:50%;" src="{{userp.picture.url}}" height="400" width="400">
+           </div>
+           <div class="card-content" style="padding: 10px;" >
+                <P> <b> Username: {{userp.user.username}} </b></P><br>
+                <br>
+                <P> <b>Name:{{userp.user.first_name}}    {{userp.user.last_name}}</b></P><br>
+                <br>
+                <P> <b>Email:{{userp.user.email}}</b></P><br>
+                <br>
+                <p> <b>Bio:{{userp.bio}}</b></p>
+
+           </div>
+        </div>
+        </div>
+     </div>
 </div>      
 {% endblock %}
