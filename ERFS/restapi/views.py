@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 import json
 # Create your views here.
  
- 
+#to display all data stored in the model asset using api
 def api_dataall(request):
    asset = Asset.objects.all()
    dict_value = {
@@ -13,10 +13,12 @@ def api_dataall(request):
    }
    return JsonResponse(dict_value)
 
+#to display data using primary key using api
 def api_dataspecific(request, pk=None):
        asset = Asset.objects.get(pk=pk)
        return JsonResponse({"asset_Title":asset.asset_Title, "asset_Type":asset.asset_Type, "asset_Price":asset.asset_Price,"asset_purpose":asset.asset_purpose,"asset_Location":asset.asset_Location})
 
+#to add data in the model asset using api
 @csrf_exempt
 def api_dataadd(request):
    a = Asset()
@@ -37,6 +39,7 @@ def api_dataadd(request):
        return JsonResponse({"asset_Title":a.asset_Title, "asset_Type":a.asset_Type,
         "asset_Price":a.asset_Price,"asset_purpose":a.asset_purpose,"asset_Location":a.asset_Location})
 
+#to update data of the model asset using api
 @csrf_exempt
 def api_dataupdate(request, pk=None):
    asset =Asset.objects.get(pk=pk)
@@ -55,6 +58,7 @@ def api_dataupdate(request, pk=None):
       return JsonResponse({"asset_Title":asset.asset_Title, "asset_Type":asset.asset_Type,
         "asset_Price":asset.asset_Price,"asset_purpose":asset.asset_purpose,"asset_Location":asset.asset_Location})
 
+#to delete data of the model asset using api
 @csrf_exempt
 def api_datadelete(request, pk=None):
    asset = Asset.objects.get(pk=pk)
@@ -66,7 +70,7 @@ def api_datadelete(request, pk=None):
        return JsonResponse({"asset_Title":asset.asset_Title, "asset_Type":asset.asset_Type,
         "asset_Price":asset.asset_Price,"asset_purpose":asset.asset_purpose,"asset_Location":asset.asset_Location})
 
-
+#for pagination using api 
 def api_assetpagination(request, PAGENO):
    SIZE = 2
    skip = SIZE * (PAGENO-1)
