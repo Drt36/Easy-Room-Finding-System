@@ -1,19 +1,20 @@
- <!--  -->
+ 
   {% extends "index.html" %}  <!-- Pulling frontend from templates -->
   {% block content %} 
   
   {% if asset %}
 
-     {% for asset in asset %}
+     {% for asset in asset %} <!-- Using for loop to display more than 1 results -->
 
 
         <div class="row" style="padding: 10px;">
             <div class="col s12 m7">
                 <div class="card">
                     <div class="card-image" style="padding: 10px;"  >
-                        <img src="{{asset.asset_Image.url}}" height="400" width="400">
+                        <img src="{{asset.asset_Image.url}}" height="400" width="400"> <!-- Displaying pictures -->
                     </div>
 
+                    <!-- Displaying results -->
                     <div class="card-content" style="padding: 10px;" >
                         <p><b>{{asset.asset_Title}}</b></p>
                         <p><b>Seller:</b>{{asset.user.first_name}}  {{asset.user.last_name}}</p>
@@ -27,26 +28,29 @@
                 <br>
             
                     <div class="card-action">
-                  
+                        
+                        <!-- Button for delating -->
                         <form method="POST" action="{% url 'booking:delete_asset' asset.pk %}">
                             {% csrf_token %}
                             <button style="position:absolute;left:10px; bottom:5px;" type= "submit" class="btn btn-danger">Delete</button>
                         </form>
                     
-                    <form method="GET" action="{% url 'booking:update_asset' asset.pk %}">
+                        <!-- Button for updating -->
+                        <form method="GET" action="{% url 'booking:update_asset' asset.pk %}">
                         {% csrf_token %}
                         <button style="position:absolute;left:100px; bottom:5px;" type="submit" class="btn btn-warning">Update</button>
-                    </form>
-                    
+                        </form>
+
+                        <!-- Button for booking -->
                         {% if asset.is_available %}
-                            <form method="POST" action="{% url 'booking:book_asset' asset.pk %}">
+                        <form method="POST" action="{% url 'booking:book_asset' asset.pk %}">
                                 {% csrf_token %}
-                                <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-primary">Book</button>
-                            </form>
+                            <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-primary">Book</button>
+                        </form>
                             {% else %}
                                 <button style="position:absolute; left:200px;bottom:5px;" type="submit" class="btn btn-success">Booked</button>
                         {% endif %}
-
+                    <!-- Button for Download -->    
                     <a href="{{asset.asset_Image.url}}" download style="position:relative; left:300px;bottom:5px;" class="btn btn-dark">Download</a>
 
                     </div>
@@ -57,7 +61,8 @@
     {% endfor %}
         
     {% else %}
-
+    
+     <!-- Div for displaying if no result found -->
     <div class="container">
         <div class="row">
             <div class="card-title">
