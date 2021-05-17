@@ -1,5 +1,4 @@
-# Extreme_ADC4
-
+#Easy Room Finding System
 Group Name: Extreme
 <br>
 Project Name: ERFS(Easy Room Finding System)
